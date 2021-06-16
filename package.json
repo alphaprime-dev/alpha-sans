@@ -1,27 +1,13 @@
 {
-  "name": "spoqa-han-sans",
-  "version": "3.3.0",
-  "description": "Spoqa Han Sans Neo",
-  "homepage": "https://spoqa.github.io/spoqa-han-sans/",
+  "name": "alpha-sans",
+  "version": "0.0.1",
+  "description": "Alpha Sans",
   "repository": {
     "type": "git",
-    "url": "https://github.com/spoqa/spoqa-han-sans.git"
-  },
-  "keywords": [
-    "Spoqa Han Sans",
-    "font"
-  ],
-  "author": {
-    "name": "Spoqa",
-    "email": "visual-design@spoqa.com",
-    "web": "https://spoqa.github.io/spoqa-han-sans/"
+    "url": "https://github.com/alphaprime-dev/alpha-sans.git"
   },
   "files": [
     "css/*",
     "Subset/*"
-  ],
-  "license": "SEE LICENSE IN LICENSE",
-  "bugs": {
-    "url": "https://github.com/spoqa/spoqa-han-sans/issues/"
-  }
+  ]
 }

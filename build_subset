@@ -1,15 +1,13 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 pip install fonttools brotli
-mkdir -p $DIR/Subset/SpoqaHanSans
-mkdir -p $DIR/Subset/SpoqaHanSans_JP
 for ext in ttf woff woff2; do
-  for p in $DIR/Original/**/*.ttf; do
+  for p in $DIR/Original/*.otf; do
     filename=$(basename "$p")
     title="${filename%.*}"
     printf "Making \e[1m\e[34m$title.$ext\e[0m..."
     output_file=${p/Original/Subset}
-    output_file=${output_file/ttf/$ext}
+    output_file=${output_file/otf/$ext}
     if [ $ext != ttf ]; then
         flavor=$ext
     fi

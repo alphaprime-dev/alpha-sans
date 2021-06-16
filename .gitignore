@@ -5,3 +5,6 @@ site/
 .DS_Store
 
 *.yml
+ 
+.vscode
+.python-version

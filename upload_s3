@@ -5,18 +5,15 @@ echo "# Uploading to s3..."
 
 upload_files()
 {
-  echo " # $1"
   pushd "$1" > /dev/null
-  for i in SpoqaHanSans*
+  for i in AlphaSans*
   do
-    aws s3 cp "$i" "s3://cdn-spoqa/${i//$2/$3}" --acl public-read
+    aws s3 cp "$i" "s3://alphaprime-s3/AlphaSans/${i//$2/$3}"
   done
   popd
 }
 
-upload_files "Subset/SpoqaHanSans" SpoqaHanSans SpoqaHanSans-
-upload_files "Subset/SpoqaHanSansNeo" SpoqaHanSansNeo SpoqaHanSansNeo
-upload_files "Subset/SpoqaHanSans_Caret" SpoqaHanSans SpoqaHanSans
-upload_files "Subset/SpoqaHanSans_JP" SpoqaHanSansJP SpoqaHanSansJP-
+upload_files "Subset" AlphaSans AlphaSans
+aws s3 cp "./css/alpha-sans.css" "s3://alphaprime-s3/AlphaSans/alpha-sans.css"
 
-aws cloudfront create-invalidation --distribution-id "$AWS_DISTRIBUTION_ID" --paths /SpoqaHanSans\*
+aws cloudfront create-invalidation --distribution-id "$AWS_DISTRIBUTION_ID" --paths /AlphaSans\*

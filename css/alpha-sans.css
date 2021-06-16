@@ -1,0 +1,47 @@
+@font-face {
+  font-family: AlphaSans;
+  src: local("AlphaSans-Thin"), url(./AlphaSans-Thin.woff2) format("woff2"),
+    url(./AlphaSans-Thin.woff) format("woff"),
+    url(./AlphaSans-Thin.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100;
+}
+@font-face {
+  font-family: AlphaSans;
+  src: local("AlphaSans-Light"), url(./AlphaSans-Light.woff2) format("woff2"),
+    url(./AlphaSans-Light.woff) format("woff"),
+    url(./AlphaSans-Light.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+}
+@font-face {
+  font-family: AlphaSans;
+  src: local("AlphaSans-Regular"),
+    url(./AlphaSans-Regular.woff2) format("woff2"),
+    url(./AlphaSans-Regular.woff) format("woff"),
+    url(./AlphaSans-Regular.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: AlphaSans;
+  src: local("AlphaSans-Medium"), url(./AlphaSans-Medium.woff2) format("woff2"),
+    url(./AlphaSans-Medium.woff) format("woff"),
+    url(./AlphaSans-Medium.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: AlphaSans;
+  src: local("AlphaSans-Bold"), url(./AlphaSans-Bold.woff2) format("woff2"),
+    url(./AlphaSans-Bold.woff) format("woff"),
+    url(./AlphaSans-Bold.ttf) format("truetype");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+}
