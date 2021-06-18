@@ -1,0 +1,24 @@
+name: upload_s3
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  upload_s3:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          aws-region: ap-northeast-2
+
+      - name: Run script
+        env:
+          AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
+        run:
+          /bin/bash upload_s3
