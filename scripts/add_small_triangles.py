@@ -20,8 +20,7 @@ def main():
 def add_small_triangles(path):
     font = TTFont(path, recalcTimestamp=False)
     cmap = font.getBestCmap()
-    source_up = font['glyf'][cmap[0x25B2]]
-    source_down = font['glyf'][cmap[0x25BC]]
+    zero = font['glyf'][cmap[ord('0')]]
     source_advance = font['hmtx'][cmap[0x25B2]][0]
     advance = otRound(source_advance * 0.676)
     x_offset = (advance - source_advance * SCALE) / 2
@@ -31,10 +30,24 @@ def add_small_triangles(path):
         TransformPen(pen, (SCALE, 0, 0, SCALE, x_offset, 0))
     )
     up = pen.glyph()
+    up.recalcBounds(font['glyf'])
+
+    # Match parity so integer coordinates can share zero's exact half-unit center.
+    if (zero.yMin + zero.yMax - up.yMin - up.yMax) % 2:
+        for index, (x, y) in enumerate(up.coordinates):
+            if y == up.yMax:
+                up.coordinates[index] = (x, y + 1)
+        up.recalcBounds(font['glyf'])
+
+    # Align the ink bounds with the vertical center of the digit zero.
+    y_offset = otRound((zero.yMin + zero.yMax - up.yMin - up.yMax) / 2)
+    for index, (x, y) in enumerate(up.coordinates):
+        up.coordinates[index] = (x, y + y_offset)
+    up.recalcBounds(font['glyf'])
 
     # Mirror the rounded coordinates to keep both triangles exactly the same size.
     down = deepcopy(up)
-    flip_y = otRound((source_up.yMin + source_down.yMax) * SCALE)
+    flip_y = up.yMin + up.yMax
     for index, (x, y) in enumerate(down.coordinates):
         down.coordinates[index] = (advance - x, flip_y - y)
 
