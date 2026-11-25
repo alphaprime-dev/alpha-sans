@@ -23,6 +23,6 @@ jobs:
 
       - name: Run script
         env:
-          AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
+          AWS_DISTRIBUTION_ID: ${{ vars.AWS_DISTRIBUTION_ID }}
         run:
           /bin/bash upload_s3

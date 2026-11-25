@@ -1,19 +1,14 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
+
+: "${AWS_DISTRIBUTION_ID:?AWS_DISTRIBUTION_ID must be set}"
 
 echo "# Uploading to s3..."
 
-upload_files()
-{
-  pushd "$1" > /dev/null
-  for i in AlphaSans*
-  do
-    aws s3 cp "$i" "s3://alphaprime-s3/AlphaSans/${i//$2/$3}"
-  done
-  popd
-}
+for font in Subset/AlphaSans*
+do
+  aws s3 cp "$font" "s3://alphaprime-storage/file/AlphaSans/"
+done
+aws s3 cp "./css/alpha-sans.css" "s3://alphaprime-storage/file/AlphaSans/alpha-sans.css"
 
-upload_files "Subset" AlphaSans AlphaSans
-aws s3 cp "./css/alpha-sans.css" "s3://alphaprime-s3/AlphaSans/alpha-sans.css"
-
-aws cloudfront create-invalidation --distribution-id "$AWS_DISTRIBUTION_ID" --paths /AlphaSans\*
+aws cloudfront create-invalidation --distribution-id "$AWS_DISTRIBUTION_ID" --paths '/AlphaSans*'
